@@ -4,15 +4,12 @@ USE sakila;
 -- Display all available tables in the Sakila database.
 SHOW TABLES;
 
-select * from sakila.film;
-select * from sakila.rental;
-
 -- 1.1 Determine the shortest and longest movie durations and name the values as max_duration and min_duration.
 select title, MIN(length) as min_duration from sakila.film group by title order by min_duration asc LIMIT 1;
-select title, MAX(length) as min_duration from sakila.film group by title order by min_duration desc LIMIT 1;
-
+select title,  MAX(length) as max_duration from sakila.film group by title order by min_duration desc LIMIT 1;
+   
 -- 1.2. Express the average movie duration in hours and minutes. Don't use decimals.
-select ROUND(AVG(length),0) AS 'average_duration' FROM sakila.film;
+select  SEC_TO_TIME(ROUND(AVG(length)) * 60) AS formatted_duration FROM sakila.film;
 
 -- 2.1 Calculate the number of days that the company has been operating
 select Max(datediff(last_update,rental_date)) from sakila.rental;
