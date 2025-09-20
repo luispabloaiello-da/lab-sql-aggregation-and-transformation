@@ -5,8 +5,9 @@ USE sakila;
 SHOW TABLES;
 
 -- 1.1 Determine the shortest and longest movie durations and name the values as max_duration and min_duration.
-select title, MIN(length) as min_duration from sakila.film group by title order by min_duration asc LIMIT 1;
-select title,  MAX(length) as max_duration from sakila.film group by title order by min_duration desc LIMIT 1;
+-- select title, MIN(length) as min_duration from sakila.film group by title order by min_duration asc LIMIT 1;
+-- select title,  MAX(length) as max_duration from sakila.film group by title order by min_duration desc LIMIT 1;
+SELECT MAX(length) AS max_duration, MIN(length) AS min_duration FROM sakila.film;
    
 -- 1.2. Express the average movie duration in hours and minutes. Don't use decimals.
 select  SEC_TO_TIME(ROUND(AVG(length)) * 60) AS formatted_duration FROM sakila.film;
